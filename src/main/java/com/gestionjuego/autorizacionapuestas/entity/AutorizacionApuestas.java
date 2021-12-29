@@ -15,11 +15,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AutorizacionApuestas {
+public class AutorizacionApuestas extends BaseEntity{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long autorizacionApuestasId;
 	private String nroRegistro;
 	private String nifTitular;
 	private String nombreTitular;
@@ -27,5 +24,5 @@ public class AutorizacionApuestas {
 	private String valTiposApuestas;
 	private LocalDate fechaInicio;
 	private LocalDate fechaExtincion;
-	
+	private Long ticketId;
 }

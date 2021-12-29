@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gestionjuego.autorizacionapuestas.entity.AutorizacionApuestas;
 import com.gestionjuego.autorizacionapuestas.service.AutorizacionApuestasService;
+import com.gestionjuego.autorizacionapuestas.vo.ResponseTemplateVO;
 
 @RestController
 @RequestMapping("/autorizacionapuestas")
@@ -34,15 +35,9 @@ public class AutorizacionApuestasController {
 		return new ResponseEntity<>(autorizacionApuestasService.update(autorizacionApuestas), HttpStatus.OK);
 	}
 	
-    @GetMapping("/{id}")  
-    public ResponseEntity<AutorizacionApuestas> getAutorizacionApuestasById(@PathVariable Long id) { 
-    	Optional<AutorizacionApuestas> optional = autorizacionApuestasService.findById(id);
-    	
-    	return optional.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
-    }
+
     @GetMapping("/all")  
-    public ResponseEntity<List<AutorizacionApuestas>> getAllAutorizacionApuestas() { 
+    public ResponseEntity<List<ResponseTemplateVO>> getAllAutorizacionApuestas() { 
         return new ResponseEntity<> (autorizacionApuestasService.getall(), HttpStatus.OK);
     }
   
@@ -52,4 +47,11 @@ public class AutorizacionApuestasController {
     	return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
     } 
 	
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponseTemplateVO> getAutorizacionApuestasWithTicket(@PathVariable Long id) {
+    	Optional<ResponseTemplateVO> optional = autorizacionApuestasService.getAutorizacionApuestasWithTicket(id);
+    	
+    	return optional.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+    }
 }
