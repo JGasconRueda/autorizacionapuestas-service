@@ -76,7 +76,7 @@ public class AutorizacionApuestasService {
 	}
 
 	private Ticket getTickeyById(Long id) {
-		Ticket ticket = restTemplate.getForObject("http://localhost:9002/tickets/"+id, Ticket.class);		
+		Ticket ticket = restTemplate.getForObject("http://TICKET-SERVICE/tickets/"+id, Ticket.class);
 		return ticket;
 	}
 }
